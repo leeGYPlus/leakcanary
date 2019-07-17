@@ -22,6 +22,9 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 import com.squareup.leakcanary.RefWatcher;
 
+/**
+ * 在 FragmentRefWatcher 中通过反射获取 SupportFragmentRefWatcher 对象
+ */
 class SupportFragmentRefWatcher implements FragmentRefWatcher {
   private final RefWatcher refWatcher;
 

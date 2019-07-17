@@ -26,9 +26,13 @@ import static java.util.Collections.unmodifiableMap;
  * Prevents specific references from being taken into account when computing the shortest strong
  * reference path from a suspected leaking instance to the GC roots.
  *
+ * 计算疑似泄漏实例到GC roots 的最短的强引用路径时，避免一些特殊的引用被纳入考虑范围。
+ *
  * This class lets you ignore known memory leaks that you known about. If the shortest path
  * matches {@link ExcludedRefs}, than the heap analyzer should look for a longer path with nothing
  * matching in {@link ExcludedRefs}.
+ * 此类可以用来忽略自己已知的泄漏，如果寻找到的最短的强引用路径与ExcludedRefs 描述的相匹配，那么就忽略此路径，
+ * 寻找其他相比更长的引用路径。
  */
 public final class ExcludedRefs implements Serializable {
 

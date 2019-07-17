@@ -72,6 +72,9 @@ public final class LeakCanaryInternals {
     }
   }
 
+  /**
+   * 设置并行
+   */
   public static void setEnabledAsync(Context context, final Class<?> componentClass,
       final boolean enabled) {
     final Context appContext = context.getApplicationContext();
@@ -82,6 +85,9 @@ public final class LeakCanaryInternals {
     });
   }
 
+  /**
+   * 设置串行
+   */
   public static void setEnabledBlocking(Context appContext, Class<?> componentClass,
       boolean enabled) {
     ComponentName component = new ComponentName(appContext, componentClass);

@@ -88,7 +88,7 @@ public final class AndroidRefWatcherBuilder extends RefWatcherBuilder<AndroidRef
     }
     RefWatcher refWatcher = build();
     if (refWatcher != DISABLED) {
-      //设置 DisplayLeakActivity 可用
+      //设置 DisplayLeakActivity 可用，此时就可以显示  DisplayLeakActivity
       LeakCanaryInternals.setEnabledAsync(context, DisplayLeakActivity.class, true);
       if (watchActivities) {
         ActivityRefWatcher.install(context, refWatcher);

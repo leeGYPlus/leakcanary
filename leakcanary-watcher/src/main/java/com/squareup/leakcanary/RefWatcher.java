@@ -33,6 +33,11 @@ import static java.util.concurrent.TimeUnit.NANOSECONDS;
  * a reference might not be weakly reachable when it should, it triggers the {@link HeapDumper}.
  *
  * <p>This class is thread-safe: you can call {@link #watch(Object)} from any thread.
+ *
+ * 监听可到达的弱引用。
+ * 当 RefWatcher 发现一个引用变为不可到达的弱引用，就会触发 HeapDumper(堆栈转储) 动作。
+ *
+ * 问题：如何发现一个引用时不可到达的。
  */
 public final class RefWatcher {
 
@@ -84,6 +89,7 @@ public final class RefWatcher {
     final long watchStartNanoTime = System.nanoTime();
     String key = UUID.randomUUID().toString();
     retainedKeys.add(key);
+    //构建以 key 为唯一标识的弱引用对象，将原来的对象放入弱引用队列
     final KeyedWeakReference reference =
         new KeyedWeakReference(watchedReference, key, referenceName, queue);
 
@@ -171,6 +177,9 @@ public final class RefWatcher {
   private void removeWeaklyReachableReferences() {
     // WeakReferences are enqueued as soon as the object to which they point to becomes weakly
     // reachable. This is before finalization or garbage collection has actually happened.
+    // 当对象变为可到达的弱引用时，就会进入队列中排队。这个步骤发生在 GC 之前。
+    // 在 KeyedWeakReference 所持有的对象被垃圾回收会，KeyedWeakReference引用对象就会被添加大 ReferenceQueue 中
+    // 因此就可以根据 ReferenceQueue 的引用对象判断对象是否被回收了。
     KeyedWeakReference ref;
     while ((ref = (KeyedWeakReference) queue.poll()) != null) {
       retainedKeys.remove(ref.key);

@@ -42,6 +42,9 @@ public final class ActivityRefWatcher {
     application.registerActivityLifecycleCallbacks(activityRefWatcher.lifecycleCallbacks);
   }
 
+  /**
+   * 在此处开启监听 Activity 的开关(在 Activity 执行 destory() 方法 )
+   */
   private final Application.ActivityLifecycleCallbacks lifecycleCallbacks =
       new ActivityLifecycleCallbacksAdapter() {
         @Override public void onActivityDestroyed(Activity activity) {

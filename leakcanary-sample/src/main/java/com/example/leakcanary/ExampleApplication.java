@@ -17,29 +17,33 @@ package com.example.leakcanary;
 
 import android.app.Application;
 import android.os.StrictMode;
+
 import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 public class ExampleApplication extends Application {
-  @Override public void onCreate() {
-    super.onCreate();
-    setupLeakCanary();
-  }
-
-  protected void setupLeakCanary() {
-    enabledStrictMode();
-    if (LeakCanary.isInAnalyzerProcess(this)) {
-      // This process is dedicated to LeakCanary for heap analysis.
-      // You should not init your app in this process.
-      return;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        setupLeakCanary();
     }
-    LeakCanary.install(this);
-  }
 
-  private static void enabledStrictMode() {
-    StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
-        .detectAll() //
-        .penaltyLog() //
-        .penaltyDeath() //
-        .build());
-  }
+    protected void setupLeakCanary() {
+        enabledStrictMode();
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        RefWatcher mWatcher = LeakCanary.install(this);
+        mWatcher.watch(new Object());
+    }
+
+    private static void enabledStrictMode() {
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder() //
+                .detectAll() //
+                .penaltyLog() //
+                .penaltyDeath() //
+                .build());
+    }
 }

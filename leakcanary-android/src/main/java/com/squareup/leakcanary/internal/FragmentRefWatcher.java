@@ -47,6 +47,7 @@ public interface FragmentRefWatcher {
       }
 
       try {
+        // com.squareup.leakcanary.internal.SupportFragmentRefWatcher
         Class<?> fragmentRefWatcherClass = Class.forName(SUPPORT_FRAGMENT_REF_WATCHER_CLASS_NAME);
         Constructor<?> constructor =
             fragmentRefWatcherClass.getDeclaredConstructor(RefWatcher.class);
