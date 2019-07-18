@@ -71,7 +71,7 @@ public final class AndroidHeapDumper implements HeapDumper {
     }
 
     /**
-     * 堆转储
+     * 获取堆转储文件
      *
      * @return
      */

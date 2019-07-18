@@ -103,7 +103,7 @@ public final class DefaultLeakDirectoryProvider implements LeakDirectoryProvider
         });
 
         // If a new heap dump file has been created recently and hasn't been processed yet, we skip.
-        // 如果创建了一个新的堆转储文件最近和尚未处理
+        // 如果创建了一个新的堆转储文件最近尚未处理
         // Otherwise we move forward and assume that the analyzer process crashes. The file will
         // eventually be removed with heap dump file rotation.
         for (File file : pendingHeapDumps) {

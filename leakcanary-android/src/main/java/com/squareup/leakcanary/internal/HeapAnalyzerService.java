@@ -44,6 +44,7 @@ public final class HeapAnalyzerService extends ForegroundService
     setEnabledBlocking(context, HeapAnalyzerService.class, true);
     setEnabledBlocking(context, listenerServiceClass, true);
     Intent intent = new Intent(context, HeapAnalyzerService.class);
+    // listenerServiceClass -- DisplayLeakService
     intent.putExtra(LISTENER_CLASS_EXTRA, listenerServiceClass.getName());
     intent.putExtra(HEAPDUMP_EXTRA, heapDump);
     ContextCompat.startForegroundService(context, intent);
@@ -66,6 +67,7 @@ public final class HeapAnalyzerService extends ForegroundService
 
     AnalysisResult result = heapAnalyzer.checkForLeak(heapDump.heapDumpFile, heapDump.referenceKey,
         heapDump.computeRetainedHeapSize);
+    // 开始显示分析结果
     AbstractAnalysisResultService.sendResultToListener(this, listenerClassName, heapDump, result);
   }
 

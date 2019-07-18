@@ -60,6 +60,7 @@ public class DisplayLeakService extends AbstractAnalysisResultService {
     } else if (resultSaved) {
       String contentTitle;
       String contentText;
+      //
       PendingIntent pendingIntent =
           DisplayLeakActivity.createPendingIntent(this, heapDump.referenceKey);
 

@@ -30,6 +30,7 @@ public final class AndroidRefWatcherBuilder extends RefWatcherBuilder<AndroidRef
    */
   public @NonNull AndroidRefWatcherBuilder listenerServiceClass(
       @NonNull Class<? extends AbstractAnalysisResultService> listenerServiceClass) {
+    //listenerServiceClass 为 DisplayLeakService
     return heapDumpListener(new ServiceHeapDumpListener(context, listenerServiceClass));
   }
 

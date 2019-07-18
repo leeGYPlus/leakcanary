@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 
 /**
  * Wraps a {@link HeapDump} and corresponding {@link AnalysisResult}.
+ * HeapDump 和 AnalysisResult 的包装类
  */
 public final class AnalyzedHeap {
 

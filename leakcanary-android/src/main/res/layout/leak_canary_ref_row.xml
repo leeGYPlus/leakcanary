@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2015 Square, Inc.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,39 +13,33 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<com.squareup.leakcanary.internal.RowElementLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.squareup.leakcanary.internal.RowElementLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:lib="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/leak_canary_row_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/leak_canary_row_layout"
-    android:clipChildren="false"
-    >
+    android:clipChildren="false">
 
-  <com.squareup.leakcanary.internal.DisplayLeakConnectorView
-      android:id="@+id/leak_canary_row_connector"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      />
+    <com.squareup.leakcanary.internal.DisplayLeakConnectorView
+        android:id="@+id/leak_canary_row_connector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-  <com.squareup.leakcanary.internal.MoreDetailsView
-      android:id="@+id/leak_canary_row_more"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      lib:leak_canary_plus_color="@color/leak_canary_class_name"
-      />
+    <com.squareup.leakcanary.internal.MoreDetailsView
+        android:id="@+id/leak_canary_row_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        lib:leak_canary_plus_color="@color/leak_canary_class_name" />
 
-  <TextView
-      android:id="@+id/leak_canary_row_title"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      />
+    <TextView
+        android:id="@+id/leak_canary_row_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-  <TextView
-      android:id="@+id/leak_canary_row_details"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:visibility="gone"
-      />
+    <TextView
+        android:id="@+id/leak_canary_row_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </com.squareup.leakcanary.internal.RowElementLayout>
