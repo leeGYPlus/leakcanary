@@ -116,6 +116,7 @@ public final class AndroidHeapDumper implements HeapDumper {
             // Abort heap dump
             return RETRY_LATER;
         }
+
     }
 
     private void showToast(final FutureResult<Toast> waitingForToast) {
