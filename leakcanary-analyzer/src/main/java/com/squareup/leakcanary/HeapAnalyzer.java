@@ -243,6 +243,9 @@ public final class HeapAnalyzer {
         "Could not find weak reference with key " + key + " in " + keysFound);
   }
 
+  /**
+   * 最终寻找到内存泄漏的位置
+   */
   private AnalysisResult findLeakTrace(long analysisStartNanoTime, Snapshot snapshot,
       Instance leakingRef, boolean computeRetainedSize) {
 

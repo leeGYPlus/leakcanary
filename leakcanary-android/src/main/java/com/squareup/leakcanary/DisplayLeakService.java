@@ -38,6 +38,9 @@ import static com.squareup.leakcanary.internal.LeakCanaryInternals.classSimpleNa
  */
 public class DisplayLeakService extends AbstractAnalysisResultService {
 
+  /**
+   * 已经分析完结果
+   */
   @Override
   protected final void onHeapAnalyzed(@NonNull AnalyzedHeap analyzedHeap) {
     HeapDump heapDump = analyzedHeap.heapDump;
@@ -48,6 +51,7 @@ public class DisplayLeakService extends AbstractAnalysisResultService {
 
     boolean resultSaved = false;
     boolean shouldSaveResult = result.leakFound || result.failure != null;
+    // 保存分析结果
     if (shouldSaveResult) {
       heapDump = renameHeapdump(heapDump);
       resultSaved = saveResult(heapDump, result);

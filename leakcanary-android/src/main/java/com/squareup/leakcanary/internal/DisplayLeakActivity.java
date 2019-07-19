@@ -104,14 +104,18 @@ public final class DisplayLeakActivity extends Activity {
 
     if (savedInstanceState != null) {
       visibleLeakRefKey = savedInstanceState.getString("visibleLeakRefKey");
+      Log.e("savedInstanceState", "test is :"+ visibleLeakRefKey);
     } else {
       Intent intent = getIntent();
+      Log.e("intent1", "test is :"+ intent);
       if (intent.hasExtra(SHOW_LEAK_EXTRA)) {
         visibleLeakRefKey = intent.getStringExtra(SHOW_LEAK_EXTRA);
+        Log.e("intent2", "test is :"+ visibleLeakRefKey);
       }
     }
 
     leaks = (List<AnalyzedHeap>) getLastNonConfigurationInstance();
+    Log.e("leak",leaks.size() + "");
 
     setContentView(R.layout.leak_canary_display_leak);
 

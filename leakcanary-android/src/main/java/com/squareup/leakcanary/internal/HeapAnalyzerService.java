@@ -59,6 +59,7 @@ public final class HeapAnalyzerService extends ForegroundService
       CanaryLog.d("HeapAnalyzerService received a null intent, ignoring.");
       return;
     }
+    // DisplayLeakService
     String listenerClassName = intent.getStringExtra(LISTENER_CLASS_EXTRA);
     HeapDump heapDump = (HeapDump) intent.getSerializableExtra(HEAPDUMP_EXTRA);
 

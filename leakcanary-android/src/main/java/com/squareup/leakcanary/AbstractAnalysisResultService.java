@@ -33,6 +33,7 @@ public abstract class AbstractAnalysisResultService extends ForegroundService {
       @NonNull AnalysisResult result) {
     Class<?> listenerServiceClass;
     try {
+      // listenerServiceClassName -- DisplayLeakService
       listenerServiceClass = Class.forName(listenerServiceClassName);
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
@@ -40,6 +41,7 @@ public abstract class AbstractAnalysisResultService extends ForegroundService {
 //    listenerServiceClass -- DisplayLeakService
     Intent intent = new Intent(context, listenerServiceClass);
 
+    // 保存 hprof 文件 为 xxx.hprof.result
     File analyzedHeapFile = AnalyzedHeap.save(heapDump, result);
     if (analyzedHeapFile != null) {
       intent.putExtra(ANALYZED_HEAP_PATH_EXTRA, analyzedHeapFile.getAbsolutePath());
@@ -61,6 +63,7 @@ public abstract class AbstractAnalysisResultService extends ForegroundService {
       onAnalysisResultFailure(getString(R.string.leak_canary_result_failure_no_disk_space));
       return;
     }
+    // xxx.hprof.result 文件
     File analyzedHeapFile = new File(intent.getStringExtra(ANALYZED_HEAP_PATH_EXTRA));
     //HeapDump 和 AnalysisResult 的包装类
     AnalyzedHeap analyzedHeap = AnalyzedHeap.load(analyzedHeapFile);
